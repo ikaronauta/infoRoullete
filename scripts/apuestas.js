@@ -204,8 +204,8 @@ function getPrimerasMitades() {
     if (totalNumeros[i] <= 18 && totalNumeros[i - 1] <= 18) {
       repeticiones++;
 
-      if (repeticiones > datos.primerasMitades) {
-        datos.total.primerasMitades++;
+      if (repeticiones > datos.total.primerasMitadesTotal) {
+        datos.total.primerasMitadesTotal++;
         localStorage.setItem(nameRoullete, JSON.stringify(datos));
       }
     } else {
