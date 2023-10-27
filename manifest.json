@@ -1,0 +1,23 @@
+{
+  "name": "InfoRoulette",
+  "version": "1.0",
+  "manifest_version": 3,
+  "icons": {
+    "16": "img/icon-InfoRoulette-16.png",
+    "32": "img/icon-InfoRoulette-32.png",
+    "128": "img/icon-InfoRoulette-128.png"
+  },
+  "content_scripts": [
+    {
+      "js": [
+        "emailjs.js",
+        "data.js",
+        "scripts/funciones.js",
+        "scripts/apuestas.js",
+        "scripts/dev.js",
+        "content.js"
+      ],
+      "matches": ["https://cachedownload.wplay.co/live/*"]
+    }
+  ]
+}
