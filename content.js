@@ -1,12 +1,22 @@
 //Inicialización de Constantes
 const cantidad = 40;
-const cantNotif = 7;
+const cantNotif = 5;
+const cantNotifFilas = 12;
 const emails = false;
 const rojosNum = [
   0, 1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36,
 ];
 const negrosNum = [
   0, 2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35,
+];
+let fila1 = [
+  3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36
+];
+let fila2 = [
+  2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35
+];
+let fila3 = [
+  1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34
 ];
 
 //Inicialización de variables
@@ -132,6 +142,9 @@ function app() {
             apuestaPares();
             apuestaPrimerMitad();
             apuestaSegundaMitad();
+            apuestaPrimeraFila();
+            apuestaSegundaFila();
+            apuestaTerceraFila();
 
             cargarTodosLosNumeros();
 
@@ -141,6 +154,10 @@ function app() {
             getPares();          
             getPrimerasMitades();
             getSegundasMitades();
+
+            getFila1();
+            getFila2();
+            getFila3();
 
             start = true;
           }
@@ -231,13 +248,19 @@ function validacionLocalStorage() {
       pares: 0,
       primeraMitad: 0,
       segundaMitad: 0,
-      total: {
+      _primeraFila: 0,
+      _segundaFila: 0,
+      _terceraFila: 0,
+      _total: {
         rojosTotal: 0,
         negrosTotal: 0,
         imparesTotal: 0,
         paresTotal: 0,
         primerasMitadesTotal: 0,
         segundasMitadesTotal: 0,
+        _primerasFilasTotal: 0,
+        _segundasFilasTotales: 0,
+        _terceraFilasTotal: 0
       }
     };
 

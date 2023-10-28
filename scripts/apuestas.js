@@ -1,10 +1,10 @@
 function apuestaRojos() {
   let count = 0;
 
-  for (let i = 0; i < cantidad; i++) {
+  for (let i = 1; i < cantidad; i++) {
     if (
       rojosNum.indexOf(dataNumbers[i]) != -1 &&
-      rojosNum.indexOf(dataNumbers[i + 1]) != -1
+      rojosNum.indexOf(dataNumbers[i - 1]) != -1
     ) {
       count++;
       cargarLocalStorage(count, (bet = "rojo"));
@@ -20,10 +20,10 @@ function apuestaRojos() {
 function apuestaNegros() {
   let count = 0;
 
-  for (let i = 0; i < cantidad; i++) {
+  for (let i = 1; i < cantidad; i++) {
     if (
       negrosNum.indexOf(dataNumbers[i]) != -1 &&
-      negrosNum.indexOf(dataNumbers[i + 1]) != -1
+      negrosNum.indexOf(dataNumbers[i - 1]) != -1
     ) {
       count++;
       cargarLocalStorage(count, (bet = "negro"));
@@ -39,10 +39,10 @@ function apuestaNegros() {
 function apuestaImpares() {
   let count = 0;
 
-  for (let i = 0; i < cantidad; i++) {
+  for (let i = 1; i < cantidad; i++) {
     if (
       (dataNumbers[i] % 2 == 1 || dataNumbers[i] == 0) &&
-      (dataNumbers[i + 1] % 2 == 1 || dataNumbers[i - 1] == 0)
+      (dataNumbers[i - 1] % 2 == 1 || dataNumbers[i - 1] == 0)
     ) {
       count++;
       cargarLocalStorage(count, (bet = "impares"));
@@ -58,10 +58,10 @@ function apuestaImpares() {
 function apuestaPares() {
   let count = 0;
 
-  for (let i = 0; i < cantidad; i++) {
+  for (let i = 1; i < cantidad; i++) {
     if (
       (dataNumbers[i] % 2 == 0 || dataNumbers[i] == 0) &&
-      (dataNumbers[i + 1] % 2 == 0 || dataNumbers[i + 1] == 0)
+      (dataNumbers[i - 1] % 2 == 0 || dataNumbers[i - 1] == 0)
     ) {
       count++;
       cargarLocalStorage(count, (bet = "pares"));
@@ -77,8 +77,8 @@ function apuestaPares() {
 function apuestaPrimerMitad() {
   let count = 0;
 
-  for (let i = 0; i < cantidad; i++) {
-    if (dataNumbers[i] <= 18 && dataNumbers[i + 1] <= 18) {
+  for (let i = 1; i < cantidad; i++) {
+    if (dataNumbers[i] <= 18 && dataNumbers[i - 1] <= 18) {
       count++;
       cargarLocalStorage(count, (bet = "primeraMitad"));
     } else {
@@ -93,10 +93,10 @@ function apuestaPrimerMitad() {
 function apuestaSegundaMitad() {
   let count = 0;
 
-  for (let i = 0; i < cantidad; i++) {
+  for (let i = 1; i < cantidad; i++) {
     if (
       (dataNumbers[i] > 18 || dataNumbers[i] == 0) &&
-      (dataNumbers[i + 1] > 18 || dataNumbers[i + 1] == 0)
+      (dataNumbers[i - 1] > 18 || dataNumbers[i - 1] == 0)
     ) {
       count++;
       cargarLocalStorage(count, (bet = "segundaMitad"));
@@ -108,6 +108,65 @@ function apuestaSegundaMitad() {
     }
   }
 }
+
+function apuestaPrimeraFila() {
+  let count = 0;
+  console.log(dataNumbers);
+  for (let i = 1; i < cantidad; i++) {
+    if (
+      (fila1.indexOf(dataNumbers[i]) == -1) 
+      && (fila1.indexOf(dataNumbers[i - 1]) == -1)
+    ) {
+      count++;
+      console.log(`R- ${dataNumbers[i]}`);
+      cargarLocalStorage(count, (bet = "_primeraFila"));
+    } else {
+      if (count >= cantNotifFilas) {
+        sendNotification((bet = "_primeraFila"), count);
+      }
+      return;
+    }
+  }
+}
+
+function apuestaSegundaFila() {
+  let count = 0;
+
+  for (let i = 1; i < cantidad; i++) {
+    if (
+      (fila2.indexOf(dataNumbers[i]) == -1) 
+      && (fila2.indexOf(dataNumbers[i - 1]) == -1)
+    ) {
+      count++;
+      cargarLocalStorage(count, (bet = "_segundaFila"));
+    } else {
+      if (count >= cantNotifFilas) {
+        sendNotification((bet = "_segundaFila"), count);
+      }
+      return;
+    }
+  }
+}
+
+function apuestaTerceraFila() {
+  let count = 0;
+
+  for (let i = 1; i < cantidad; i++) {
+    if (
+      (fila3.indexOf(dataNumbers[i]) == -1) 
+      && (fila3.indexOf(dataNumbers[i - 1]) == -1)
+    ) {
+      count++;
+      cargarLocalStorage(count, (bet = "_terceraFila"));
+    } else {
+      if (count >= cantNotifFilas) {
+        sendNotification((bet = "_terceraFila"), count);
+      }
+      return;
+    }
+  }
+}
+
 
 //**
 ///***
@@ -123,8 +182,8 @@ function getRojos() {
     ) {
       repeticiones++;
 
-      if (repeticiones > datos.total.rojosTotal) {
-        datos.total.rojosTotal++;
+      if (repeticiones > datos._total.rojosTotal) {
+        datos._total.rojosTotal++;
         localStorage.setItem(nameRoullete, JSON.stringify(datos));
       }
     } else {
@@ -144,8 +203,8 @@ function getNegros() {
     ) {
       repeticiones++;
 
-      if (repeticiones > datos.total.negrosTotal) {
-        datos.total.negrosTotal++;
+      if (repeticiones > datos._total.negrosTotal) {
+        datos._total.negrosTotal++;
         localStorage.setItem(nameRoullete, JSON.stringify(datos));
       }
     } else {
@@ -165,8 +224,8 @@ function getImpares() {
     ) {
       repeticiones++;
 
-      if (repeticiones > datos.total.imparesTotal) {
-        datos.total.imparesTotal++;
+      if (repeticiones > datos._total.imparesTotal) {
+        datos._total.imparesTotal++;
         localStorage.setItem(nameRoullete, JSON.stringify(datos));
       }
     } else {
@@ -186,8 +245,8 @@ function getPares() {
     ) {
       repeticiones++;
 
-      if (repeticiones > datos.total.paresTotal) {
-        datos.total.paresTotal++;
+      if (repeticiones > datos._total.paresTotal) {
+        datos._total.paresTotal++;
         localStorage.setItem(nameRoullete, JSON.stringify(datos));
       }
     } else {
@@ -204,8 +263,8 @@ function getPrimerasMitades() {
     if (totalNumeros[i] <= 18 && totalNumeros[i - 1] <= 18) {
       repeticiones++;
 
-      if (repeticiones > datos.total.primerasMitadesTotal) {
-        datos.total.primerasMitadesTotal++;
+      if (repeticiones > datos._total.primerasMitadesTotal) {
+        datos._total.primerasMitadesTotal++;
         localStorage.setItem(nameRoullete, JSON.stringify(datos));
       }
     } else {
@@ -225,8 +284,64 @@ function getSegundasMitades() {
     ) {
       repeticiones++;
 
-      if (repeticiones > datos.total.segundasMitadesTotal) {
-        datos.total.segundasMitadesTotal++;
+      if (repeticiones > datos._total.segundasMitadesTotal) {
+        datos._total.segundasMitadesTotal++;
+        localStorage.setItem(nameRoullete, JSON.stringify(datos));
+      }
+    } else {
+      repeticiones = 0;
+    }
+  }
+}
+
+function getFila1() {
+  let repeticiones = 0;
+  let datos = JSON.parse(localStorage.getItem(nameRoullete));
+
+  for (let i = 1; i < totalNumeros.length; i++) {
+    if((fila1.indexOf(totalNumeros[i]) == -1) && 
+      (fila1.indexOf(totalNumeros[i - 1]) == -1)){
+      repeticiones++;
+      
+      if(repeticiones > datos._total._primerasFilasTotal){
+        datos._total._primerasFilasTotal++;
+        localStorage.setItem(nameRoullete, JSON.stringify(datos));
+      }
+    } else {
+      repeticiones = 0;
+    }
+  }
+}
+
+function getFila2() {
+  let repeticiones = 0;
+  let datos = JSON.parse(localStorage.getItem(nameRoullete));
+
+  for (let i = 1; i < totalNumeros.length; i++) {
+    if((fila2.indexOf(totalNumeros[i]) == -1) && (fila2.indexOf(totalNumeros[i - 1]) == -1)){
+      repeticiones++;
+      
+      if(repeticiones > datos._total._segundasFilasTotales){
+        datos._total._segundasFilasTotales++;
+        localStorage.setItem(nameRoullete, JSON.stringify(datos));
+      }
+    } else {
+      repeticiones = 0;
+    }
+  }
+}
+
+function getFila3() {
+  let repeticiones = 0;
+  let datos = JSON.parse(localStorage.getItem(nameRoullete));
+
+  for (let i = 1; i < totalNumeros.length; i++) {
+    if((fila3.indexOf(totalNumeros[i]) == -1) 
+      && (fila3.indexOf(totalNumeros[i - 1]) == -1)){
+      repeticiones++;
+      
+      if(repeticiones > datos._total._terceraFilasTotal){
+        datos._total._terceraFilasTotal++;
         localStorage.setItem(nameRoullete, JSON.stringify(datos));
       }
     } else {
