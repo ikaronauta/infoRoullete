@@ -238,7 +238,10 @@ function apuestaSegundaColumna() {
     let count = 0;
 
     for (let i = 1; i < cantidad; i++) {
-      if (dataNumbers[i] >= 13 && dataNumbers[i] <= 36) {
+      if (
+        (totalNumeros[i] >= 1 && totalNumeros[i] <= 10) ||
+        (totalNumeros[i] >= 25 && totalNumeros[i] <= 36)
+        ) {
         count++;
         cargarLocalStorage(count, (bet = "__segundasColumnas"));
       } else {
@@ -260,7 +263,7 @@ function apuestaTerceraColumna() {
     let count = 0;
 
     for (let i = 1; i < cantidad; i++) {
-      if (dataNumbers[i] >= 13 && dataNumbers[i] <= 36) {
+      if (totalNumeros[i] >= 1 && totalNumeros[i] <= 24) {
         count++;
         cargarLocalStorage(count, (bet = "__tercerasColumnas"));
       } else {

@@ -14,7 +14,6 @@
         "data.js",
         "scripts/funciones.js",
         "scripts/apuestas.js",
-        "scripts/dev.js",
         "content.js"
       ],
       "matches": ["https://cachedownload.wplay.co/live/*"]

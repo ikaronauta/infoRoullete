@@ -35,7 +35,25 @@ function inicio() {
   });
 
   setInterval(() => {
-    location.reload();
+    try {
+      if(document.getElementsByClassName('account-panel__section')[1]){
+        let item1 = document.getElementsByClassName('account-panel__section')[1].children[0].innerHTML;
+        let item2 = document.getElementsByClassName('account-panel__section')[1].children[1].innerHTML;
+
+        if(item1 == 'Apuesta' && item2 != '$ 0'){
+          new Notification(nameRoullete, {
+            body: '20 minutos de juego sin refrescar.',
+          });
+        } else {
+          location.reload();
+        }
+      }
+    } catch (error) {
+      new Notification(nameRoullete, {
+        body: error,
+      });
+      location.reload();
+    }    
   }, 1200000);
 
   validacionMinuto = setInterval(() => {
