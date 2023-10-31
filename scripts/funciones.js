@@ -31,7 +31,7 @@ function cargarTodosLosNumeros() {
         
         arrDatos = [...document.getElementsByClassName('common-scroll__scroll-view-child')[1].firstChild.children];
 
-        arrDatos.reverse().forEach(dato => {
+        arrDatos  .forEach(dato => {
             totalNumeros.push(parseInt(dato.textContent));
         });
     } catch (error) {

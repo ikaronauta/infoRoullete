@@ -1,7 +1,7 @@
 //Inicialización de Constantes
 const cantidad = 40;
-const cantNotif = 5;
-const cantNotifFilas = 12;
+const cantNotif = 8;
+const cantNotifFilasColumnas = 12;
 const emails = false;
 const rojosNum = [
   0, 1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36,
@@ -9,15 +9,9 @@ const rojosNum = [
 const negrosNum = [
   0, 2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35,
 ];
-let fila1 = [
-  3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36
-];
-let fila2 = [
-  2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35
-];
-let fila3 = [
-  1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34
-];
+let fila1 = [3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36];
+let fila2 = [2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35];
+let fila3 = [1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34];
 
 //Inicialización de variables
 let totalNumeros = [];
@@ -135,7 +129,7 @@ function app() {
             }
 
             console.log(dataNumbers);
-            
+
             apuestaRojos();
             apuestaNegros();
             apuestaImpares();
@@ -145,19 +139,25 @@ function app() {
             apuestaPrimeraFila();
             apuestaSegundaFila();
             apuestaTerceraFila();
+            apuestaPrimeraColumna();
+            apuestaSegundaColumna();
+            apuestaTerceraColumna();
 
             cargarTodosLosNumeros();
 
             getRojos();
             getNegros();
             getImpares();
-            getPares();          
+            getPares();
             getPrimerasMitades();
             getSegundasMitades();
 
             getFila1();
             getFila2();
             getFila3();
+            getColumna1();
+            getColumna2();
+            getColumna3();
 
             start = true;
           }
@@ -222,24 +222,17 @@ function sendNotification(bet, count) {
 function cargarLocalStorage(count, bet) {
   validacionLocalStorage();
 
-  let dataStorage = JSON.parse(
-    localStorage.getItem(nameRoullete)
-  );
+  let dataStorage = JSON.parse(localStorage.getItem(nameRoullete));
 
   if (dataStorage[bet] < count) {
     dataStorage[bet] = count;
   }
 
-  localStorage.setItem(
-    nameRoullete,
-    JSON.stringify(dataStorage)
-  );
+  localStorage.setItem(nameRoullete, JSON.stringify(dataStorage));
 }
 
 function validacionLocalStorage() {
-  if (
-    !localStorage.getItem(nameRoullete)
-  ) {
+  if (!localStorage.getItem(nameRoullete)) {
     let dataStorage = {
       tiempo: 0,
       rojo: 0,
@@ -251,6 +244,9 @@ function validacionLocalStorage() {
       _primeraFila: 0,
       _segundaFila: 0,
       _terceraFila: 0,
+      __primerasColumnas: 0,
+      __segundasColumnas: 0,
+      __tercerasColumnas: 0,
       _total: {
         rojosTotal: 0,
         negrosTotal: 0,
@@ -260,14 +256,14 @@ function validacionLocalStorage() {
         segundasMitadesTotal: 0,
         _primerasFilasTotal: 0,
         _segundasFilasTotales: 0,
-        _terceraFilasTotal: 0
-      }
+        _tercerasFilasTotal: 0,
+        __primerasColumnasTotal: 0,
+        __segundasColumnasTotal: 0,
+        __tercerasColumnasTotal: 0,
+      },
     };
 
-    localStorage.setItem(
-      nameRoullete,
-      JSON.stringify(dataStorage)
-    );
+    localStorage.setItem(nameRoullete, JSON.stringify(dataStorage));
   }
 }
 
