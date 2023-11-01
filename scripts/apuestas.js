@@ -149,7 +149,7 @@ function apuestaPrimeraFila() {
   try {
     let count = 0;
 
-    for (let i = 1; i < cantidad; i++) {
+    for (let i = 0; i < cantidad; i++) {
       if (fila1.indexOf(dataNumbers[i]) == -1) {
         count++;
         cargarLocalStorage(count, (bet = "_primeraFila"));
@@ -171,7 +171,7 @@ function apuestaSegundaFila() {
   try {
     let count = 0;
 
-    for (let i = 1; i < cantidad; i++) {
+    for (let i = 0; i < cantidad; i++) {
       if (fila2.indexOf(dataNumbers[i]) == -1) {
         count++;
         cargarLocalStorage(count, (bet = "_segundaFila"));
@@ -193,7 +193,7 @@ function apuestaTerceraFila() {
   try {
     let count = 0;
 
-    for (let i = 1; i < cantidad; i++) {
+    for (let i = 0; i < cantidad; i++) {
       if (fila3.indexOf(dataNumbers[i]) == -1) {
         count++;
         cargarLocalStorage(count, (bet = "_terceraFila"));
@@ -215,7 +215,7 @@ function apuestaPrimeraColumna() {
   try {
     let count = 0;
 
-    for (let i = 1; i < cantidad; i++) {
+    for (let i = 0; i < cantidad; i++) {
       if (dataNumbers[i] >= 13 && dataNumbers[i] <= 36) {
         count++;
         cargarLocalStorage(count, (bet = "__primerasColumnas"));
@@ -237,9 +237,9 @@ function apuestaSegundaColumna() {
   try {
     let count = 0;
 
-    for (let i = 1; i < cantidad; i++) {
+    for (let i = 0; i < cantidad; i++) {
       if (
-        (totalNumeros[i] >= 1 && totalNumeros[i] <= 10) ||
+        (totalNumeros[i] >= 1 && totalNumeros[i] <= 12) ||
         (totalNumeros[i] >= 25 && totalNumeros[i] <= 36)
         ) {
         count++;
@@ -262,7 +262,7 @@ function apuestaTerceraColumna() {
   try {
     let count = 0;
 
-    for (let i = 1; i < cantidad; i++) {
+    for (let i = 0; i < cantidad; i++) {
       if (totalNumeros[i] >= 1 && totalNumeros[i] <= 24) {
         count++;
         cargarLocalStorage(count, (bet = "__tercerasColumnas"));
@@ -545,7 +545,7 @@ function getColumna2() {
 
     for (let i = 0; i < totalNumeros.length; i++) {
       if (
-        (totalNumeros[i] >= 1 && totalNumeros[i] <= 10) ||
+        (totalNumeros[i] >= 1 && totalNumeros[i] <= 12) ||
         (totalNumeros[i] >= 25 && totalNumeros[i] <= 36)
       ) {
         repeticiones++;
