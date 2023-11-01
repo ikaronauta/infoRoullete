@@ -8,10 +8,10 @@ function apuestaRojos() {
         rojosNum.indexOf(dataNumbers[i - 1]) != -1
       ) {
         count++;
-        cargarLocalStorage(count, (bet = "rojo"));
+        cargarLocalStorage(count, (bet = "color_Rojo"));
       } else {
         if (count >= cantNotif) {
-          sendNotification((bet = "rojo"), count);
+          sendNotification((bet = "color_Rojo"), count);
         }
         return;
       }
@@ -33,10 +33,10 @@ function apuestaNegros() {
         negrosNum.indexOf(dataNumbers[i - 1]) != -1
       ) {
         count++;
-        cargarLocalStorage(count, (bet = "negro"));
+        cargarLocalStorage(count, (bet = "color_Negro"));
       } else {
         if (count >= cantNotif) {
-          sendNotification((bet = "negro"), count);
+          sendNotification((bet = "color_Negro"), count);
         }
         return;
       }
@@ -58,10 +58,10 @@ function apuestaImpares() {
         (dataNumbers[i - 1] % 2 == 1 || dataNumbers[i - 1] == 0)
       ) {
         count++;
-        cargarLocalStorage(count, (bet = "impares"));
+        cargarLocalStorage(count, (bet = "par_No"));
       } else {
         if (count >= cantNotif) {
-          sendNotification((bet = "impares"), count);
+          sendNotification((bet = "par_No"), count);
         }
         return;
       }
@@ -83,10 +83,10 @@ function apuestaPares() {
         (dataNumbers[i - 1] % 2 == 0 || dataNumbers[i - 1] == 0)
       ) {
         count++;
-        cargarLocalStorage(count, (bet = "pares"));
+        cargarLocalStorage(count, (bet = "par_Si"));
       } else {
         if (count >= cantNotif) {
-          sendNotification((bet = "pares"), count);
+          sendNotification((bet = "par_Si"), count);
         }
         return;
       }
@@ -105,10 +105,10 @@ function apuestaPrimerMitad() {
     for (let i = 1; i < cantidad; i++) {
       if (dataNumbers[i] <= 18 && dataNumbers[i - 1] <= 18) {
         count++;
-        cargarLocalStorage(count, (bet = "primeraMitad"));
+        cargarLocalStorage(count, (bet = "mitad_1"));
       } else {
         if (count >= cantNotif) {
-          sendNotification((bet = "primeraMitad"), count);
+          sendNotification((bet = "mitad_1"), count);
         }
         return;
       }
@@ -130,10 +130,10 @@ function apuestaSegundaMitad() {
         (dataNumbers[i - 1] > 18 || dataNumbers[i - 1] == 0)
       ) {
         count++;
-        cargarLocalStorage(count, (bet = "segundaMitad"));
+        cargarLocalStorage(count, (bet = "mitad_2"));
       } else {
         if (count >= cantNotif) {
-          sendNotification((bet = "segundaMitad"), count);
+          sendNotification((bet = "mitad_2"), count);
         }
         return;
       }
@@ -152,10 +152,10 @@ function apuestaPrimeraFila() {
     for (let i = 0; i < cantidad; i++) {
       if (fila1.indexOf(dataNumbers[i]) == -1) {
         count++;
-        cargarLocalStorage(count, (bet = "_primeraFila"));
+        cargarLocalStorage(count, (bet = "_fila_1"));
       } else {
         if (count >= cantNotifFilasColumnas) {
-          sendNotification((bet = "_primeraFila"), count);
+          sendNotification((bet = "_fila_1"), count);
         }
         return;
       }
@@ -174,10 +174,10 @@ function apuestaSegundaFila() {
     for (let i = 0; i < cantidad; i++) {
       if (fila2.indexOf(dataNumbers[i]) == -1) {
         count++;
-        cargarLocalStorage(count, (bet = "_segundaFila"));
+        cargarLocalStorage(count, (bet = "_fila_2"));
       } else {
         if (count >= cantNotifFilasColumnas) {
-          sendNotification((bet = "_segundaFila"), count);
+          sendNotification((bet = "_fila_2"), count);
         }
         return;
       }
@@ -196,10 +196,10 @@ function apuestaTerceraFila() {
     for (let i = 0; i < cantidad; i++) {
       if (fila3.indexOf(dataNumbers[i]) == -1) {
         count++;
-        cargarLocalStorage(count, (bet = "_terceraFila"));
+        cargarLocalStorage(count, (bet = "_fila_3"));
       } else {
         if (count >= cantNotifFilasColumnas) {
-          sendNotification((bet = "_terceraFila"), count);
+          sendNotification((bet = "_fila_3"), count);
         }
         return;
       }
@@ -218,10 +218,10 @@ function apuestaPrimeraColumna() {
     for (let i = 0; i < cantidad; i++) {
       if (dataNumbers[i] >= 13 && dataNumbers[i] <= 36) {
         count++;
-        cargarLocalStorage(count, (bet = "__primerasColumnas"));
+        cargarLocalStorage(count, (bet = "_columna_1"));
       } else {
         if (count >= cantNotifFilasColumnas) {
-          sendNotification((bet = "__primerasColumnas"), count);
+          sendNotification((bet = "_columna_1"), count);
         }
         return;
       }
@@ -241,12 +241,12 @@ function apuestaSegundaColumna() {
       if (
         (totalNumeros[i] >= 1 && totalNumeros[i] <= 12) ||
         (totalNumeros[i] >= 25 && totalNumeros[i] <= 36)
-        ) {
+      ) {
         count++;
-        cargarLocalStorage(count, (bet = "__segundasColumnas"));
+        cargarLocalStorage(count, (bet = "_columna_2"));
       } else {
         if (count >= cantNotifFilasColumnas) {
-          sendNotification((bet = "__segundasColumnas"), count);
+          sendNotification((bet = "_columna_2"), count);
         }
         return;
       }
@@ -265,10 +265,10 @@ function apuestaTerceraColumna() {
     for (let i = 0; i < cantidad; i++) {
       if (totalNumeros[i] >= 1 && totalNumeros[i] <= 24) {
         count++;
-        cargarLocalStorage(count, (bet = "__tercerasColumnas"));
+        cargarLocalStorage(count, (bet = "_columna_3"));
       } else {
         if (count >= cantNotifFilasColumnas) {
-          sendNotification((bet = "__tercerasColumnas"), count);
+          sendNotification((bet = "_columna_3"), count);
         }
         return;
       }
@@ -295,8 +295,8 @@ function getRojos() {
       ) {
         repeticiones++;
 
-        if (repeticiones > datos._total.rojosTotal) {
-          datos._total.rojosTotal++;
+        if (repeticiones > datos._totales.color_Rojo) {
+          datos._totales.color_Rojo++;
           localStorage.setItem(nameRoullete, JSON.stringify(datos));
         }
       } else {
@@ -322,8 +322,8 @@ function getNegros() {
       ) {
         repeticiones++;
 
-        if (repeticiones > datos._total.negrosTotal) {
-          datos._total.negrosTotal++;
+        if (repeticiones > datos._totales.color_Negro) {
+          datos._totales.color_Negro++;
           localStorage.setItem(nameRoullete, JSON.stringify(datos));
         }
       } else {
@@ -349,8 +349,8 @@ function getImpares() {
       ) {
         repeticiones++;
 
-        if (repeticiones > datos._total.imparesTotal) {
-          datos._total.imparesTotal++;
+        if (repeticiones > datos._totales.par_No) {
+          datos._totales.par_No++;
           localStorage.setItem(nameRoullete, JSON.stringify(datos));
         }
       } else {
@@ -376,8 +376,8 @@ function getPares() {
       ) {
         repeticiones++;
 
-        if (repeticiones > datos._total.paresTotal) {
-          datos._total.paresTotal++;
+        if (repeticiones > datos._totales.par_Si) {
+          datos._totales.par_Si++;
           localStorage.setItem(nameRoullete, JSON.stringify(datos));
         }
       } else {
@@ -400,8 +400,8 @@ function getPrimerasMitades() {
       if (totalNumeros[i] <= 18 && totalNumeros[i - 1] <= 18) {
         repeticiones++;
 
-        if (repeticiones > datos._total.primerasMitadesTotal) {
-          datos._total.primerasMitadesTotal++;
+        if (repeticiones > datos._totales.mitad_1) {
+          datos._totales.mitad_1++;
           localStorage.setItem(nameRoullete, JSON.stringify(datos));
         }
       } else {
@@ -427,8 +427,8 @@ function getSegundasMitades() {
       ) {
         repeticiones++;
 
-        if (repeticiones > datos._total.segundasMitadesTotal) {
-          datos._total.segundasMitadesTotal++;
+        if (repeticiones > datos._totales.mitad_2) {
+          datos._totales.mitad_2++;
           localStorage.setItem(nameRoullete, JSON.stringify(datos));
         }
       } else {
@@ -451,8 +451,8 @@ function getFila1() {
       if (fila1.indexOf(totalNumeros[i]) == -1) {
         repeticiones++;
 
-        if (repeticiones > datos._total._primerasFilasTotal) {
-          datos._total._primerasFilasTotal++;
+        if (repeticiones > datos._totales._fila_1) {
+          datos._totales._fila_1++;
           localStorage.setItem(nameRoullete, JSON.stringify(datos));
         }
       } else {
@@ -475,8 +475,8 @@ function getFila2() {
       if (fila2.indexOf(totalNumeros[i]) == -1) {
         repeticiones++;
 
-        if (repeticiones > datos._total._segundasFilasTotales) {
-          datos._total._segundasFilasTotales++;
+        if (repeticiones > datos._totales._fila_2) {
+          datos._totales._fila_2++;
           localStorage.setItem(nameRoullete, JSON.stringify(datos));
         }
       } else {
@@ -499,8 +499,8 @@ function getFila3() {
       if (fila3.indexOf(totalNumeros[i]) == -1) {
         repeticiones++;
 
-        if (repeticiones > datos._total._tercerasFilasTotal) {
-          datos._total._tercerasFilasTotal++;
+        if (repeticiones > datos._totales._fila_3) {
+          datos._totales._fila_3++;
           localStorage.setItem(nameRoullete, JSON.stringify(datos));
         }
       } else {
@@ -523,8 +523,8 @@ function getColumna1() {
       if (totalNumeros[i] >= 13 && totalNumeros[i] <= 36) {
         repeticiones++;
 
-        if (repeticiones > datos._total.__primerasColumnasTotal) {
-          datos._total.__primerasColumnasTotal++;
+        if (repeticiones > datos._totales._columna_1) {
+          datos._totales._columna_1++;
           localStorage.setItem(nameRoullete, JSON.stringify(datos));
         }
       } else {
@@ -550,8 +550,8 @@ function getColumna2() {
       ) {
         repeticiones++;
 
-        if (repeticiones > datos._total.__segundasColumnasTotal) {
-          datos._total.__segundasColumnasTotal++;
+        if (repeticiones > datos._totales._columna_2) {
+          datos._totales._columna_2++;
           localStorage.setItem(nameRoullete, JSON.stringify(datos));
         }
       } else {
@@ -574,8 +574,8 @@ function getColumna3() {
       if (totalNumeros[i] >= 1 && totalNumeros[i] <= 24) {
         repeticiones++;
 
-        if (repeticiones > datos._total.__tercerasColumnasTotal) {
-          datos._total.__tercerasColumnasTotal++;
+        if (repeticiones > datos._totales._columna_3) {
+          datos._totales._columna_3++;
           localStorage.setItem(nameRoullete, JSON.stringify(datos));
         }
       } else {

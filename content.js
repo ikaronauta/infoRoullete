@@ -1,7 +1,7 @@
 //Inicialización de Constantes
 const cantidad = 40;
 const cantNotif = 8;
-const cantNotifFilasColumnas = 12;
+const cantNotifFilasColumnas = 15;
 const emails = false;
 const rojosNum = [
   0, 1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36,
@@ -36,13 +36,15 @@ function inicio() {
 
   setInterval(() => {
     try {
-      if(document.getElementsByClassName('account-panel__section')[1]){
-        let item1 = document.getElementsByClassName('account-panel__section')[1].children[0].innerHTML;
-        let item2 = document.getElementsByClassName('account-panel__section')[1].children[1].innerHTML;
+      if (document.getElementsByClassName("account-panel__section")[1]) {
+        let item1 = document.getElementsByClassName("account-panel__section")[1]
+          .children[0].innerHTML;
+        let item2 = document.getElementsByClassName("account-panel__section")[1]
+          .children[1].innerHTML;
 
-        if(item1 == 'Apuesta' && item2 != '$ 0'){
+        if (item1 == "Apuesta" && item2 != "$ 0") {
           new Notification(nameRoullete, {
-            body: '20 minutos de juego sin refrescar.',
+            body: "20 minutos de juego sin refrescar.",
           });
         } else {
           location.reload();
@@ -53,7 +55,7 @@ function inicio() {
         body: error,
       });
       location.reload();
-    }    
+    }
   }, 1200000);
 
   validacionMinuto = setInterval(() => {
@@ -253,31 +255,31 @@ function validacionLocalStorage() {
   if (!localStorage.getItem(nameRoullete)) {
     let dataStorage = {
       tiempo: 0,
-      rojo: 0,
-      negro: 0,
-      impares: 0,
-      pares: 0,
-      primeraMitad: 0,
-      segundaMitad: 0,
-      _primeraFila: 0,
-      _segundaFila: 0,
-      _terceraFila: 0,
-      __primerasColumnas: 0,
-      __segundasColumnas: 0,
-      __tercerasColumnas: 0,
-      _total: {
-        rojosTotal: 0,
-        negrosTotal: 0,
-        imparesTotal: 0,
-        paresTotal: 0,
-        primerasMitadesTotal: 0,
-        segundasMitadesTotal: 0,
-        _primerasFilasTotal: 0,
-        _segundasFilasTotales: 0,
-        _tercerasFilasTotal: 0,
-        __primerasColumnasTotal: 0,
-        __segundasColumnasTotal: 0,
-        __tercerasColumnasTotal: 0,
+      color_Rojo: 0,
+      color_Negro: 0,
+      par_No: 0,
+      par_Si: 0,
+      mitad_1: 0,
+      mitad_2: 0,
+      _fila_1: 0,
+      _fila_2: 0,
+      _fila_3: 0,
+      _columna_1: 0,
+      _columna_2: 0,
+      _columna_3: 0,
+      _totales: {
+        color_Rojo: 0,
+        color_Negro: 0,
+        par_No: 0,
+        par_Si: 0,
+        mitad_1: 0,
+        mitad_2: 0,
+        _fila_1: 0,
+        _fila_2: 0,
+        _fila_3: 0,
+        _columna_1: 0,
+        _columna_2: 0,
+        _columna_3: 0,
       },
     };
 
